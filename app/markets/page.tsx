@@ -47,10 +47,10 @@ export default function MarketsPage() {
     list = [...list].sort((a, b) => {
       let av: number | string = a[sortKey] ?? '';
       let bv: number | string = b[sortKey] ?? '';
-      // volume is string like "$42.3B" — sort by numeric
+      // volume is string like "₹42.3B" — sort by numeric
       if (sortKey === 'volume') {
-        av = parseFloat((av as string).replace(/[$BMK]/g, ''));
-        bv = parseFloat((bv as string).replace(/[$BMK]/g, ''));
+        av = parseFloat((av as string).replace(/[₹BMK]/g, ''));
+        bv = parseFloat((bv as string).replace(/[₹BMK]/g, ''));
       }
       if (av < bv) return sortDir === 'asc' ? -1 : 1;
       if (av > bv) return sortDir === 'asc' ? 1 : -1;

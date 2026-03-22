@@ -197,7 +197,7 @@ export default function SimulatorPage() {
             {/* Portfolio value meter */}
             <div>
               <div className="flex justify-between text-[10px] text-white/30 font-mono mb-1.5">
-                <span>$0</span>
+                <span>₹0</span>
                 <span>{formatCurrency(result.baseValue)}</span>
               </div>
               <div className="h-2 rounded-full bg-surface-3 overflow-hidden">

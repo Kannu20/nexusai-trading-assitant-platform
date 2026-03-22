@@ -34,7 +34,7 @@ const FEATURES = [
 
 // ── Animated stat ────────────────────────────────────────────────
 const STATS = [
-  { value: '$2.4T', label: 'Assets Tracked' },
+  { value: '₹2.4T', label: 'Assets Tracked' },
   { value: '98.9%', label: 'Uptime' },
   { value: '50K+',  label: 'Active Traders' },
 ];

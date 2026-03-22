@@ -89,7 +89,7 @@ export default function DashboardPage() {
         />
         <StatCard
           label="Day Change"
-          value="+$312.40"
+          value="+₹312.40"
           sub="+0.69% today"
           icon={Activity}
           trend="up"
@@ -155,7 +155,7 @@ export default function DashboardPage() {
                   tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 10 }}
                   axisLine={false}
                   tickLine={false}
-                  tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`}
+                  tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`}
                   width={42}
                 />
                 <Tooltip content={<AreaTooltip />} />

@@ -301,8 +301,8 @@ function ProfileDropdown({ onClose }: { onClose: () => void }) {
       {/* Stats strip */}
       <div className="grid grid-cols-3 divide-x divide-border border-b border-border">
         {[
-          { label: 'Portfolio', value: '$45.0K' },
-          { label: "Today's P&L", value: '+$312' },
+          { label: 'Portfolio', value: '₹45.0K' },
+          { label: "Today's P&L", value: '+₹312' },
           { label: 'Positions', value: '4' },
         ].map(({ label, value }) => (
           <div key={label} className="px-3 py-2.5 text-center">

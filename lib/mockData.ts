@@ -9,7 +9,7 @@ export type Asset = {
   category: 'stock' | 'commodity' | 'crypto';
   price: number;
   change: number;       // % change 24h
-  changeAbs: number;    // absolute $ change
+  changeAbs: number;    // absolute ₹ change
   volume: string;
   marketCap: string;
   high24h: number;
@@ -50,8 +50,8 @@ export const ASSETS: Asset[] = [
     price: 2341.50,
     change: 1.24,
     changeAbs: 28.70,
-    volume: '$42.3B',
-    marketCap: '$14.5T',
+    volume: '₹42.3B',
+    marketCap: '₹14.5T',
     high24h: 2358.90,
     low24h: 2310.20,
     sparkline: [2280, 2295, 2310, 2290, 2320, 2338, 2341],
@@ -64,8 +64,8 @@ export const ASSETS: Asset[] = [
     price: 29.48,
     change: 2.17,
     changeAbs: 0.63,
-    volume: '$8.1B',
-    marketCap: '$1.6T',
+    volume: '₹8.1B',
+    marketCap: '₹1.6T',
     high24h: 30.10,
     low24h: 28.80,
     sparkline: [27.5, 27.9, 28.4, 28.9, 29.1, 29.3, 29.48],
@@ -78,7 +78,7 @@ export const ASSETS: Asset[] = [
     price: 78.34,
     change: -0.83,
     changeAbs: -0.66,
-    volume: '$31.7B',
+    volume: '₹31.7B',
     marketCap: 'N/A',
     high24h: 79.50,
     low24h: 77.80,
@@ -92,7 +92,7 @@ export const ASSETS: Asset[] = [
     price: 4.52,
     change: 0.89,
     changeAbs: 0.04,
-    volume: '$3.4B',
+    volume: '₹3.4B',
     marketCap: 'N/A',
     high24h: 4.58,
     low24h: 4.46,
@@ -106,8 +106,8 @@ export const ASSETS: Asset[] = [
     price: 189.30,
     change: 1.52,
     changeAbs: 2.84,
-    volume: '$6.2B',
-    marketCap: '$2.94T',
+    volume: '₹6.2B',
+    marketCap: '₹2.94T',
     high24h: 190.40,
     low24h: 186.90,
     sparkline: [182, 184, 185, 183, 186, 188, 189.3],
@@ -120,8 +120,8 @@ export const ASSETS: Asset[] = [
     price: 415.20,
     change: 0.74,
     changeAbs: 3.05,
-    volume: '$4.1B',
-    marketCap: '$3.09T',
+    volume: '₹4.1B',
+    marketCap: '₹3.09T',
     high24h: 416.80,
     low24h: 411.50,
     sparkline: [405, 408, 410, 409, 412, 414, 415.2],
@@ -134,8 +134,8 @@ export const ASSETS: Asset[] = [
     price: 875.40,
     change: 3.21,
     changeAbs: 27.20,
-    volume: '$18.9B',
-    marketCap: '$2.15T',
+    volume: '₹18.9B',
+    marketCap: '₹2.15T',
     high24h: 882.10,
     low24h: 845.30,
     sparkline: [820, 835, 845, 855, 860, 870, 875.4],
@@ -148,8 +148,8 @@ export const ASSETS: Asset[] = [
     price: 178.90,
     change: -2.14,
     changeAbs: -3.91,
-    volume: '$9.8B',
-    marketCap: '$568B',
+    volume: '₹9.8B',
+    marketCap: '₹568B',
     high24h: 184.20,
     low24h: 177.50,
     sparkline: [190, 188, 185, 183, 182, 180, 178.9],
@@ -225,7 +225,7 @@ export const ALERTS: Alert[] = [
     id: 'a1',
     type: 'price',
     asset: 'Gold',
-    message: 'Gold has crossed the $2,340 resistance level.',
+    message: 'Gold has crossed the ₹2,340 resistance level.',
     time: '2 min ago',
     read: false,
     severity: 'high',
@@ -273,15 +273,15 @@ export const AI_RESPONSES: Record<string, string> = {
   default:
     "Based on current market conditions, I'm analyzing your query. The multi-asset correlation matrix shows **medium systemic risk** with elevated volatility in commodities sector. Consider rebalancing toward defensive assets if your risk tolerance is conservative.",
   gold:
-    "**Gold (XAU/INR)** is displaying a classic **bullish continuation pattern** — trading above the 200-day MA at $2,290. Key resistance at $2,360. **Medium risk** with upside target of $2,420 by Q3. Central bank buying and geopolitical tensions support the bullish thesis. Recommended allocation: 15-20% of commodity exposure.",
+    "**Gold (XAU/INR)** is displaying a classic **bullish continuation pattern** — trading above the 200-day MA at ₹2,290. Key resistance at ₹2,360. **Medium risk** with upside target of ₹2,420 by Q3. Central bank buying and geopolitical tensions support the bullish thesis. Recommended allocation: 15-20% of commodity exposure.",
   silver:
-    "**Silver (XAG/INR)** shows a **dual demand dynamic** — both safe-haven and industrial demand are rising. Solar panel adoption is driving structural demand growth. Current momentum is positive with RSI at 62 (not yet overbought). **Low-to-medium risk**. Target: $32 over 3 months.",
+    "**Silver (XAG/INR)** shows a **dual demand dynamic** — both safe-haven and industrial demand are rising. Solar panel adoption is driving structural demand growth. Current momentum is positive with RSI at 62 (not yet overbought). **Low-to-medium risk**. Target: ₹32 over 3 months.",
   oil:
-    "**WTI Crude Oil** faces headwinds from potential demand slowdown in Asia. Supply cuts from OPEC+ provide a floor around $76. Short-term outlook: **neutral to bearish**. **High risk** — energy markets remain geopolitically sensitive. Watch for EIA inventory data this Wednesday.",
+    "**WTI Crude Oil** faces headwinds from potential demand slowdown in Asia. Supply cuts from OPEC+ provide a floor around ₹76. Short-term outlook: **neutral to bearish**. **High risk** — energy markets remain geopolitically sensitive. Watch for EIA inventory data this Wednesday.",
   portfolio:
     "Your portfolio shows a **diversification score of 68/100**. Concentration risk in tech (NVDA + AAPL = 48% of equity exposure) warrants attention. Recommended action: add commodity exposure via Copper or Silver to improve the score. Current **risk level: Medium**.",
   crash:
-    "Stress-testing your portfolio against a **20% market crash scenario**: estimated drawdown of **$9,200 (−21.4%)**. Gold and Silver positions act as partial hedges, limiting losses vs. an all-equity portfolio. Consider adding 5-10% in short-duration bonds to further reduce drawdown risk.",
+    "Stress-testing your portfolio against a **20% market crash scenario**: estimated drawdown of **₹9,200 (−21.4%)**. Gold and Silver positions act as partial hedges, limiting losses vs. an all-equity portfolio. Consider adding 5-10% in short-duration bonds to further reduce drawdown risk.",
 };
 
 // ── Simulator data ───────────────────────────────────────────

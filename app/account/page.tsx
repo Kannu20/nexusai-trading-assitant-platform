@@ -521,7 +521,7 @@ function SecurityTab() {
 // ── PREFERENCES TAB ───────────────────────────────────────────────
 function PreferencesTab() {
   const { dbUser } = useAuth();
-  const [currency, setCurrency]       = useState(dbUser?.preferences?.currency ?? 'USD');
+  const [currency, setCurrency]       = useState(dbUser?.preferences?.currency ?? 'INR');
   const [theme, setTheme]             = useState(dbUser?.preferences?.theme ?? 'dark');
   const [riskProfile, setRiskProfile] = useState(dbUser?.preferences?.riskProfile ?? 'moderate');
   const [emailNotifs, setEmailNotifs] = useState(true);

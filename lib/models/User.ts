@@ -79,7 +79,7 @@ const UserSchema = new Schema<IUser>(
     preferences: {
       currency: {
         type:    String,
-        default: 'USD',
+        default: 'INR',
       },
       theme: {
         type:    String,

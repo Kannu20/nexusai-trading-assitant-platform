@@ -139,7 +139,7 @@ export default function SignInPage() {
             <span className="w-2 h-2 rounded-full bg-accent-green animate-pulse" />
             <span className="text-[11px] text-accent-green font-mono">LIVE SIGNAL</span>
           </div>
-          <p className="text-white text-sm font-semibold">Gold (XAU/USD)</p>
+          <p className="text-white text-sm font-semibold">Gold (XAU/INR)</p>
           <p className="text-2xl font-bold text-white font-mono">$2,341.50</p>
           <p className="text-accent-green text-xs font-mono mt-1">▲ +1.24% today</p>
         </div>

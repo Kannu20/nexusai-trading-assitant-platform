@@ -9,11 +9,11 @@ export function cn(...inputs: ClassValue[]) {
   return clsx(inputs);
 }
 
-/** Format a number as USD currency */
+/** Format a number as INR currency */
 export function formatCurrency(value: number, decimals = 2): string {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'INR',
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   }).format(value);

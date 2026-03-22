@@ -135,7 +135,7 @@ export default function PortfolioPage() {
             </div>
             <div>
               <label className="text-[11px] text-white/40 font-mono uppercase block mb-2">
-                Investment (USD)
+                Investment (INR)
               </label>
               <input
                 type="number"

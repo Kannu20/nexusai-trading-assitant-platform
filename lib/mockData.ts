@@ -22,7 +22,7 @@ export type PortfolioItem = {
   assetId: string;
   name: string;
   symbol: string;
-  amount: number;       // USD invested
+  amount: number;       // INR invested
   units: number;
   currentValue: number;
   gainLoss: number;
@@ -45,7 +45,7 @@ export const ASSETS: Asset[] = [
   {
     id: 'gold',
     name: 'Gold',
-    symbol: 'XAU/USD',
+    symbol: 'XAU/INR',
     category: 'commodity',
     price: 2341.50,
     change: 1.24,
@@ -59,7 +59,7 @@ export const ASSETS: Asset[] = [
   {
     id: 'silver',
     name: 'Silver',
-    symbol: 'XAG/USD',
+    symbol: 'XAG/INR',
     category: 'commodity',
     price: 29.48,
     change: 2.17,
@@ -73,7 +73,7 @@ export const ASSETS: Asset[] = [
   {
     id: 'crude-oil',
     name: 'Crude Oil',
-    symbol: 'WTI/USD',
+    symbol: 'WTI/INR',
     category: 'commodity',
     price: 78.34,
     change: -0.83,
@@ -87,7 +87,7 @@ export const ASSETS: Asset[] = [
   {
     id: 'copper',
     name: 'Copper',
-    symbol: 'HG/USD',
+    symbol: 'HG/INR',
     category: 'commodity',
     price: 4.52,
     change: 0.89,
@@ -167,7 +167,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     id: 'p1',
     assetId: 'gold',
     name: 'Gold',
-    symbol: 'XAU/USD',
+    symbol: 'XAU/INR',
     amount: 15000,
     units: 6.41,
     currentValue: 15009.50,
@@ -191,7 +191,7 @@ export const PORTFOLIO_ITEMS: PortfolioItem[] = [
     id: 'p3',
     assetId: 'crude-oil',
     name: 'Crude Oil',
-    symbol: 'WTI/USD',
+    symbol: 'WTI/INR',
     amount: 8000,
     units: 102.1,
     currentValue: 7994.21,
@@ -273,9 +273,9 @@ export const AI_RESPONSES: Record<string, string> = {
   default:
     "Based on current market conditions, I'm analyzing your query. The multi-asset correlation matrix shows **medium systemic risk** with elevated volatility in commodities sector. Consider rebalancing toward defensive assets if your risk tolerance is conservative.",
   gold:
-    "**Gold (XAU/USD)** is displaying a classic **bullish continuation pattern** — trading above the 200-day MA at $2,290. Key resistance at $2,360. **Medium risk** with upside target of $2,420 by Q3. Central bank buying and geopolitical tensions support the bullish thesis. Recommended allocation: 15-20% of commodity exposure.",
+    "**Gold (XAU/INR)** is displaying a classic **bullish continuation pattern** — trading above the 200-day MA at $2,290. Key resistance at $2,360. **Medium risk** with upside target of $2,420 by Q3. Central bank buying and geopolitical tensions support the bullish thesis. Recommended allocation: 15-20% of commodity exposure.",
   silver:
-    "**Silver (XAG/USD)** shows a **dual demand dynamic** — both safe-haven and industrial demand are rising. Solar panel adoption is driving structural demand growth. Current momentum is positive with RSI at 62 (not yet overbought). **Low-to-medium risk**. Target: $32 over 3 months.",
+    "**Silver (XAG/INR)** shows a **dual demand dynamic** — both safe-haven and industrial demand are rising. Solar panel adoption is driving structural demand growth. Current momentum is positive with RSI at 62 (not yet overbought). **Low-to-medium risk**. Target: $32 over 3 months.",
   oil:
     "**WTI Crude Oil** faces headwinds from potential demand slowdown in Asia. Supply cuts from OPEC+ provide a floor around $76. Short-term outlook: **neutral to bearish**. **High risk** — energy markets remain geopolitically sensitive. Watch for EIA inventory data this Wednesday.",
   portfolio:

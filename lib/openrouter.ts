@@ -37,7 +37,7 @@ interface AnalysisInput {
 
 export async function analyzeAsset(input: AnalysisInput): Promise<AnalysisResult> {
   const apiKey = process.env.OPENROUTER_API_KEY;
-  const model  = process.env.OPENROUTER_MODEL ?? 'meta-llama/llama-3.1-8b-instruct:free';
+  const model  = process.env.OPENROUTER_MODEL ?? 'openai/gpt-3.5-turbo';
 
   if (!apiKey) throw new Error('OPENROUTER_API_KEY not set');
 

@@ -92,3 +92,7 @@ lerna-debug.log*
 *.cert
 .cache/
 .turbo/
+
+# Explicit key patterns (extra safety)
+*OPENROUTER_API_KEY*
+*FINNHUB_API_KEY*

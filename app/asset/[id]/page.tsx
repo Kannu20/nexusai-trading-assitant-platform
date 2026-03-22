@@ -92,7 +92,7 @@ const RSITooltip = ({ active, payload, label }: any) => {
 
 // ── Main page ─────────────────────────────────────────────────────
 export default function AssetPage({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = use(params);
+  const { id } = params;
   const router  = useRouter();
 
   const mockAsset = ASSETS.find((a) => a.id === id);

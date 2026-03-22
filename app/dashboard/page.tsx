@@ -75,7 +75,7 @@ export default function DashboardPage() {
         <StatCard
           label="Total Invested"
           value={formatCurrency(totalInvested)}
-          sub={`${items.length} positions`}
+          sub={`₹{items.length} positions`}
           icon={IndianRupee}
           accentColor="#9966ff"
         />
@@ -256,11 +256,11 @@ export default function DashboardPage() {
                   </td>
                   <td className="px-5 py-3.5 font-mono text-white/70 text-xs">{formatCurrency(item.amount)}</td>
                   <td className="px-5 py-3.5 font-mono text-white text-xs">{formatCurrency(item.currentValue)}</td>
-                  <td className={`px-5 py-3.5 font-mono text-xs ${item.gainLoss >= 0 ? 'text-accent-green' : 'text-accent-red'}`}>
+                  <td className={`px-5 py-3.5 font-mono text-xs ₹{item.gainLoss >= 0 ? 'text-accent-green' : 'text-accent-red'}`}>
                     {item.gainLoss >= 0 ? '+' : ''}{formatCurrency(item.gainLoss)}
                   </td>
-                  <td className={`px-5 py-3.5 text-xs ${item.gainLossPct >= 0 ? 'text-accent-green' : 'text-accent-red'}`}>
-                    <span className={`px-2 py-0.5 rounded-full text-[11px] font-mono ${
+                  <td className={`px-5 py-3.5 text-xs ₹{item.gainLossPct >= 0 ? 'text-accent-green' : 'text-accent-red'}`}>
+                    <span className={`px-2 py-0.5 rounded-full text-[11px] font-mono ₹{
                       item.gainLossPct >= 0 ? 'bg-accent-green/10' : 'bg-accent-red/10'
                     }`}>
                       {formatPercent(item.gainLossPct)}

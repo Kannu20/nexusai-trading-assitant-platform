@@ -29,7 +29,7 @@ const RECENT_ACTIVITY = [
   { id: 1, action: 'Signed in via Google',          time: '2 min ago',   icon: '🔐', device: 'Chrome · macOS' },
   { id: 2, action: 'Updated portfolio — Added NVDA', time: '1h ago',      icon: '💼', device: 'Safari · iPhone' },
   { id: 3, action: 'AI Insight query — Gold trend',  time: '3h ago',      icon: '🧠', device: 'Chrome · macOS' },
-  { id: 4, action: 'Alert triggered — Gold $2,340',  time: 'Yesterday',   icon: '🔔', device: 'System' },
+  { id: 4, action: 'Alert triggered — Gold ₹2,340',  time: 'Yesterday',   icon: '🔔', device: 'System' },
   { id: 5, action: 'Simulator run — Crash −30%',     time: 'Yesterday',   icon: '🧪', device: 'Chrome · macOS' },
   { id: 6, action: 'Password changed',               time: '3 days ago',  icon: '🔑', device: 'Chrome · Windows' },
   { id: 7, action: 'Account created',                time: '7 days ago',  icon: '🎉', device: 'Chrome · macOS' },

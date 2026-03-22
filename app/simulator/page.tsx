@@ -256,7 +256,7 @@ export default function SimulatorPage() {
                   tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 10 }}
                   axisLine={false}
                   tickLine={false}
-                  tickFormatter={(v) => `$${(v / 1000).toFixed(0)}k`}
+                  tickFormatter={(v) => `₹${(v / 1000).toFixed(0)}k`}
                   width={46}
                 />
                 <Tooltip content={<CustomTooltip />} />
@@ -287,15 +287,15 @@ export default function SimulatorPage() {
           <div className="mt-4 pt-4 border-t border-border grid grid-cols-3 gap-4 text-center">
             <div>
               <p className="text-[11px] text-white/30 font-mono uppercase">Interest Impact</p>
-              <p className="text-sm font-mono text-accent-amber mt-1">-${(interestRate * 800).toLocaleString()}</p>
+              <p className="text-sm font-mono text-accent-amber mt-1">-₹{(interestRate * 800).toLocaleString()}</p>
             </div>
             <div>
               <p className="text-[11px] text-white/30 font-mono uppercase">Crash Impact</p>
-              <p className="text-sm font-mono text-accent-red mt-1">-${Math.round((crashPct / 100) * result.baseValue).toLocaleString()}</p>
+              <p className="text-sm font-mono text-accent-red mt-1">-₹{Math.round((crashPct / 100) * result.baseValue).toLocaleString()}</p>
             </div>
             <div>
               <p className="text-[11px] text-white/30 font-mono uppercase">Net Drawdown</p>
-              <p className={`text-sm font-mono mt-1 ${isLoss ? 'text-accent-red' : 'text-accent-green'}`}>
+              <p className={`text-sm font-mono mt-1 ₹{isLoss ? 'text-accent-red' : 'text-accent-green'}`}>
                 {result.changePct}%
               </p>
             </div>

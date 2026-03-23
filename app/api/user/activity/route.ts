@@ -4,16 +4,17 @@
 export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
-import { verifySession } from '@/lib/session';
+
 import connectDB from '@/lib/mongodb';
 import Activity from '@/lib/models/Activity';
+import { verifySessionCookie } from '@/lib/firebase-admin';
 
 export async function GET(req: NextRequest) {
   const token = req.cookies.get('__session')?.value;
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   let session;
-  try { session = await verifySession(token); }
+  try { session = await verifySessionCookie(token); }
   catch { return NextResponse.json({ error: 'Session expired' }, { status: 401 }); }
 
   const { searchParams } = new URL(req.url);

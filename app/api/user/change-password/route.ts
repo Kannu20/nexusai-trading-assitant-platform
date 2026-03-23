@@ -4,9 +4,10 @@
 export const dynamic = 'force-dynamic';
 
 import { NextRequest, NextResponse } from 'next/server';
-import { verifySession } from '@/lib/session';
+// import { verifySession } from '@/lib/session';
 import { logActivity } from '@/lib/activityLogger';
 import * as admin from 'firebase-admin';
+import { verifySessionCookie } from '@/lib/firebase-admin';
 
 // Lazy Firebase Admin init guard
 function getAdminAuth() {
@@ -31,7 +32,7 @@ export async function POST(req: NextRequest) {
   if (!token) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   let session;
-  try { session = await verifySession(token); }
+  try { session = await verifySessionCookie(token); }
   catch { return NextResponse.json({ error: 'Session expired' }, { status: 401 }); }
 
   const body = await req.json().catch(() => ({}));

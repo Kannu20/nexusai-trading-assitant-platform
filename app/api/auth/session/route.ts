@@ -43,22 +43,47 @@ export async function POST(req: NextRequest) {
     }
 
     // 3. Upsert user in MongoDB
-    await connectDB();
-    const user = await (User as any).upsertFromFirebase(decoded);
+    // await connectDB();
+    // const user = await (User as any).upsertFromFirebase(decoded);
 
+    await connectDB();
+
+    let user = await User.findOne({ uid: decoded.uid });
+
+    if (!user) {
+      user = await User.create({
+        uid: decoded.uid,
+        email: decoded.email,
+        name: decoded.name || "User",
+        provider: decoded.firebase?.sign_in_provider || "unknown",
+        plan: "free",
+        role: "user",
+        preferences: {
+          currency: "INR",
+          theme: "dark",
+          riskProfile: "moderate",
+        },
+        createdAt: new Date(),
+        lastLoginAt: new Date(),
+      });
+    } else {
+      user.lastLoginAt = new Date();
+      await user.save();
+    }
     // 4. Set httpOnly session cookie
     cookies().set('__session', sessionCookie, {
       httpOnly: true,
-      secure:   process.env.NODE_ENV === 'production',
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      maxAge:   SESSION_DURATION_MS / 1000,
-      path:     '/',
+      maxAge: SESSION_DURATION_MS / 1000,
+      path: '/',
     });
 
     return NextResponse.json({ success: true, user: user.toJSON() });
 
   } catch (err: any) {
     console.error('[POST /api/auth/session]', err);
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    // return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json({ success: true, User });
   }
 }

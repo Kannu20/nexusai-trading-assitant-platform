@@ -28,18 +28,21 @@ const PROTECTED_PREFIXES = [
 const AUTH_PREFIXES = [
   '/auth/signin',
   '/auth/signup',
+ 
 ];
 
 // API routes that are always public
 const PUBLIC_API_PREFIXES = [
   '/api/auth/session',
   '/api/auth/signout',
+  '/api/auth/me',
 ];
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const sessionCookie = request.cookies.get('__session');
-  const hasSession = Boolean(sessionCookie?.value);
+  // const hasSession = Boolean(sessionCookie?.value);
+  const hasSession = sessionCookie?.value?.length > 10;
 
   // ── Let public API routes pass through ──────────────────────
   if (PUBLIC_API_PREFIXES.some((p) => pathname.startsWith(p))) {
@@ -63,9 +66,13 @@ export function middleware(request: NextRequest) {
 
   // ── Redirect logged-in users away from auth pages ───────────
   const isAuthPage = AUTH_PREFIXES.some((p) => pathname.startsWith(p));
+  // if (isAuthPage && hasSession) {
+  //   return NextResponse.redirect(new URL('/dashboard', request.url));
+  // }
   if (isAuthPage && hasSession) {
-    return NextResponse.redirect(new URL('/dashboard', request.url));
-  }
+  const redirectTo = request.nextUrl.searchParams.get('redirect') || '/dashboard';
+  return NextResponse.redirect(new URL(redirectTo, request.url));
+}
 
   return NextResponse.next();
 }

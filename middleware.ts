@@ -41,8 +41,8 @@ const PUBLIC_API_PREFIXES = [
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const sessionCookie = request.cookies.get('__session');
-  // const hasSession = Boolean(sessionCookie?.value);
-  const hasSession = sessionCookie?.value?.length > 10;
+  const hasSession = Boolean(sessionCookie?.value);
+  // const hasSession = sessionCookie?.value?.length > 10;
 
   // ── Let public API routes pass through ──────────────────────
   if (PUBLIC_API_PREFIXES.some((p) => pathname.startsWith(p))) {

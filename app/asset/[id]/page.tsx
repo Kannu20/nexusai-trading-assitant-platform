@@ -91,7 +91,7 @@ const RSITooltip = ({ active, payload, label }: any) => {
 };
 
 // ── Main page ─────────────────────────────────────────────────────
-export default function AssetPage({ params }: { params: Promise<{ id: string }> }) {
+export default function AssetPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const router  = useRouter();
 

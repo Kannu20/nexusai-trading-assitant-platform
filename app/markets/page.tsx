@@ -175,7 +175,7 @@ export default function MarketsPage() {
     setWatchlist((prev) => {
       const next = new Set(prev);
       next.has(id) ? next.delete(id) : next.add(id);
-      try { localStorage.setItem(WL_KEY, JSON.stringify([...next])); } catch { /* ignore */ }
+      try { localStorage.setItem(WL_KEY, JSON.stringify(Array.from(next))); } catch { /* ignore */ }
       return next;
     });
   }, []);

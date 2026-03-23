@@ -83,7 +83,7 @@
 //   const { currentUser, dbUser } = useAuth();
 //   const [name, setName]       = useState(dbUser?.name ?? currentUser?.displayName ?? '');
 //   const [saving, setSaving]   = useState(false);
-//   const [toast, setToast]     = useState<{ msg: string; type: 'success' | 'error' } | null>(null);
+//   const [toast, setToast]     = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
 //   const email      = dbUser?.email ?? currentUser?.email ?? '';
 //   const photoURL   = dbUser?.photoURL ?? currentUser?.photoURL;
@@ -102,10 +102,10 @@
 //         headers: { 'Content-Type': 'application/json' },
 //         body: JSON.stringify({ name: name.trim() }),
 //       });
-//       if (res.ok) setToast({ msg: 'Profile updated successfully', type: 'success' });
-//       else        setToast({ msg: 'Failed to update profile', type: 'error' });
+//       if (res.ok) setToast({ message: 'Profile updated successfully', type: 'success' });
+//       else        setToast({ message: 'Failed to update profile', type: 'error' });
 //     } catch {
-//       setToast({ msg: 'Network error — please try again', type: 'error' });
+//       setToast({ message: 'Network error — please try again', type: 'error' });
 //     } finally {
 //       setSaving(false);
 //     }
@@ -113,7 +113,7 @@
 
 //   return (
 //     <div className="space-y-5">
-//       {toast && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
+//       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
 //       {/* ── Avatar + account summary ── */}
 //       <SectionCard title="Account Summary">
@@ -301,7 +301,7 @@
 //   const [newPwd, setNewPwd]           = useState('');
 //   const [confirmPwd, setConfirmPwd]   = useState('');
 //   const [showPwds, setShowPwds]       = useState({ current: false, new: false, confirm: false });
-//   const [toast, setToast]             = useState<{ msg: string; type: 'success' | 'error' } | null>(null);
+//   const [toast, setToast]             = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 //   const [saving, setSaving]           = useState(false);
 //   const [deleteConfirm, setDeleteConfirm] = useState('');
 //   const [twoFAEnabled, setTwoFAEnabled]   = useState(false);
@@ -334,18 +334,18 @@
 
 //   const handlePasswordChange = async (e: React.FormEvent) => {
 //     e.preventDefault();
-//     if (newPwd !== confirmPwd) { setToast({ msg: 'Passwords do not match', type: 'error' }); return; }
-//     if (pwdStrength < 2)       { setToast({ msg: 'Password is too weak', type: 'error' }); return; }
+//     if (newPwd !== confirmPwd) { setToast({ message: 'Passwords do not match', type: 'error' }); return; }
+//     if (pwdStrength < 2)       { setToast({ message: 'Password is too weak', type: 'error' }); return; }
 //     setSaving(true);
 //     await new Promise((r) => setTimeout(r, 1200)); // simulate API
-//     setToast({ msg: 'Password updated successfully', type: 'success' });
+//     setToast({ message: 'Password updated successfully', type: 'success' });
 //     setCurrentPwd(''); setNewPwd(''); setConfirmPwd('');
 //     setSaving(false);
 //   };
 
 //   return (
 //     <div className="space-y-5">
-//       {toast && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
+//       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
 //       {/* ── Change password ── */}
 //       <SectionCard
@@ -529,7 +529,7 @@
 //   const [priceAlerts, setPriceAlerts] = useState(true);
 //   const [weeklyDigest, setWeeklyDigest] = useState(false);
 //   const [saving, setSaving]           = useState(false);
-//   const [toast, setToast]             = useState<{ msg: string; type: 'success' | 'error' } | null>(null);
+//   const [toast, setToast]             = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
 //   const handleSave = async () => {
 //     setSaving(true);
@@ -539,10 +539,10 @@
 //         headers: { 'Content-Type': 'application/json' },
 //         body: JSON.stringify({ preferences: { currency, theme, riskProfile } }),
 //       });
-//       if (res.ok) setToast({ msg: 'Preferences saved', type: 'success' });
-//       else        setToast({ msg: 'Failed to save preferences', type: 'error' });
+//       if (res.ok) setToast({ message: 'Preferences saved', type: 'success' });
+//       else        setToast({ message: 'Failed to save preferences', type: 'error' });
 //     } catch {
-//       setToast({ msg: 'Network error', type: 'error' });
+//       setToast({ message: 'Network error', type: 'error' });
 //     } finally {
 //       setSaving(false);
 //     }
@@ -565,7 +565,7 @@
 
 //   return (
 //     <div className="space-y-5">
-//       {toast && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />}
+//       {toast && <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />}
 
 //       {/* ── Trading preferences ── */}
 //       <SectionCard title="Trading Preferences" subtitle="Customize your investment experience">
@@ -848,7 +848,7 @@ const TABS = [
 type TabId = (typeof TABS)[number]['id'];
 
 // ── Toast ─────────────────────────────────────────────────────────
-interface ToastState { msg: string; type: 'success' | 'error' | 'info'; }
+interface ToastState { message: string; type: 'success' | 'error' | 'info'; }
 
 function Toast({ message, type, onClose }: ToastState & { onClose: () => void }) {
   useEffect(() => { const t = setTimeout(onClose, 4000); return () => clearTimeout(t); }, [onClose]);
@@ -970,18 +970,18 @@ function ProfileTab({ onToast }: { onToast: (t: ToastState) => void }) {
       if (res.ok) {
         const data = await res.json();
         setProfile((prev: any) => ({ ...prev, ...data.user }));
-        onToast({ msg: 'Profile updated successfully', type: 'success' });
+        onToast({ message: 'Profile updated successfully', type: 'success' });
       } else {
         const data = await res.json();
-        onToast({ msg: data.error ?? 'Failed to update profile', type: 'error' });
+        onToast({ message: data.error ?? 'Failed to update profile', type: 'error' });
       }
     } catch {
-      onToast({ msg: 'Network error — please try again', type: 'error' });
+      onToast({ message: 'Network error — please try again', type: 'error' });
     } finally { setSaving(false); }
   };
 
   const handleUpgradePlan = () => {
-    onToast({ msg: 'Billing portal coming soon!', type: 'info' });
+    onToast({ message: 'Billing portal coming soon!', type: 'info' });
   };
 
   return (
@@ -1008,7 +1008,7 @@ function ProfileTab({ onToast }: { onToast: (t: ToastState) => void }) {
               </div>
             )}
             <button
-              onClick={() => onToast({ msg: 'Photo upload coming soon — connect cloud storage', type: 'info' })}
+              onClick={() => onToast({ message: 'Photo upload coming soon — connect cloud storage', type: 'info' })}
               className="absolute -bottom-1.5 -right-1.5 w-7 h-7 rounded-full bg-accent-cyan flex items-center justify-center shadow-glow-cyan hover:bg-accent-cyan/90 transition-colors"
             >
               <Camera className="w-3.5 h-3.5 text-surface" />
@@ -1106,7 +1106,7 @@ function ProfileTab({ onToast }: { onToast: (t: ToastState) => void }) {
             <div className="flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-surface-3/50 border border-border">
               <span className="text-[11px] text-white/30 font-mono truncate flex-1">{uid?.slice(0, 28) ?? '—'}...</span>
               <button
-                onClick={() => { navigator.clipboard.writeText(uid); onToast({ msg: 'UID copied to clipboard', type: 'success' }); }}
+                onClick={() => { navigator.clipboard.writeText(uid); onToast({ message: 'UID copied to clipboard', type: 'success' }); }}
                 className="text-white/20 hover:text-white/60 transition-colors flex-shrink-0"
               >
                 <Check className="w-3.5 h-3.5" />
@@ -1154,7 +1154,7 @@ function ProfileTab({ onToast }: { onToast: (t: ToastState) => void }) {
               <TrendingUp className="w-4 h-4" />Upgrade to Pro
             </button>
           ) : (
-            <button onClick={() => onToast({ msg: 'Billing portal coming soon', type: 'info' })} className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border text-white/40 text-sm hover:border-border-bright hover:text-white/70 transition-all flex-shrink-0">
+            <button onClick={() => onToast({ message: 'Billing portal coming soon', type: 'info' })} className="flex items-center gap-2 px-4 py-2 rounded-xl border border-border text-white/40 text-sm hover:border-border-bright hover:text-white/70 transition-all flex-shrink-0">
               Manage Billing <ExternalLink className="w-3.5 h-3.5" />
             </button>
           )}
@@ -1183,8 +1183,8 @@ function SecurityTab({ onToast }: { onToast: (t: ToastState) => void }) {
 
   const handlePasswordChange = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (newPwd !== confirmPwd) { onToast({ msg: 'Passwords do not match', type: 'error' }); return; }
-    if (pwdStr.score < 2)      { onToast({ msg: 'Password too weak — aim for Fair or better', type: 'error' }); return; }
+    if (newPwd !== confirmPwd) { onToast({ message: 'Passwords do not match', type: 'error' }); return; }
+    if (pwdStr.score < 2)      { onToast({ message: 'Password too weak — aim for Fair or better', type: 'error' }); return; }
     setSaving(true);
     try {
       const res = await fetch('/api/user/change-password', {
@@ -1193,14 +1193,14 @@ function SecurityTab({ onToast }: { onToast: (t: ToastState) => void }) {
       });
       const data = await res.json();
       if (res.ok) {
-        onToast({ msg: data.devMode ? 'Password updated (dev mode)' : 'Password updated successfully — please sign in again', type: 'success' });
+        onToast({ message: data.devMode ? 'Password updated (dev mode)' : 'Password updated successfully — please sign in again', type: 'success' });
         setCurrentPwd(''); setNewPwd(''); setConfirmPwd('');
         if (!data.devMode) setTimeout(() => logout(), 2000);
       } else {
-        onToast({ msg: data.error ?? 'Password update failed', type: 'error' });
+        onToast({ message: data.error ?? 'Password update failed', type: 'error' });
       }
     } catch {
-      onToast({ msg: 'Network error — please try again', type: 'error' });
+      onToast({ message: 'Network error — please try again', type: 'error' });
     } finally { setSaving(false); }
   };
 
@@ -1210,15 +1210,15 @@ function SecurityTab({ onToast }: { onToast: (t: ToastState) => void }) {
     try {
       const res = await fetch('/api/user/delete', { method: 'DELETE' });
       if (res.ok) {
-        onToast({ msg: 'Account deleted. Redirecting...', type: 'info' });
+        onToast({ message: 'Account deleted. Redirecting...', type: 'info' });
         setTimeout(() => router.push('/auth/signin'), 1500);
       } else {
         const data = await res.json();
-        onToast({ msg: data.error ?? 'Deletion failed', type: 'error' });
+        onToast({ message: data.error ?? 'Deletion failed', type: 'error' });
         setDeleting(false);
       }
     } catch {
-      onToast({ msg: 'Network error', type: 'error' });
+      onToast({ message: 'Network error', type: 'error' });
       setDeleting(false);
     }
   };
@@ -1315,7 +1315,7 @@ function SecurityTab({ onToast }: { onToast: (t: ToastState) => void }) {
             </div>
           </div>
           <button
-            onClick={() => { setTwoFA((p) => !p); onToast({ msg: twoFA ? '2FA disabled' : '2FA setup coming soon!', type: twoFA ? 'info' : 'info' }); }}
+            onClick={() => { setTwoFA((p) => !p); onToast({ message: twoFA ? '2FA disabled' : '2FA setup coming soon!', type: twoFA ? 'info' : 'info' }); }}
             className={cn('w-12 h-6 rounded-full relative transition-colors duration-300',
               twoFA ? 'bg-accent-green' : 'bg-surface-3 border border-border')}>
             <span className={cn('absolute top-0.5 w-5 h-5 rounded-full bg-white shadow transition-transform duration-300',
@@ -1345,7 +1345,7 @@ function SecurityTab({ onToast }: { onToast: (t: ToastState) => void }) {
                 <p className="text-[11px] text-white/35 font-mono mt-0.5">{s.location} · {s.time}</p>
               </div>
               {!s.current && (
-                <button onClick={() => onToast({ msg: 'Session revoked', type: 'success' })}
+                <button onClick={() => onToast({ message: 'Session revoked', type: 'success' })}
                   className="text-[11px] text-accent-red/60 hover:text-accent-red px-2 py-1 rounded-lg hover:bg-accent-red/10 transition-all">
                   Revoke
                 </button>
@@ -1434,14 +1434,14 @@ function PreferencesTab({ onToast }: { onToast: (t: ToastState) => void }) {
         body: JSON.stringify({ preferences: { currency, riskProfile, theme } }),
       });
       if (res.ok) {
-        onToast({ msg: 'Preferences saved successfully', type: 'success' });
+        onToast({ message: 'Preferences saved successfully', type: 'success' });
         setChanged(false);
       } else {
         const data = await res.json();
-        onToast({ msg: data.error ?? 'Failed to save', type: 'error' });
+        onToast({ message: data.error ?? 'Failed to save', type: 'error' });
       }
     } catch {
-      onToast({ msg: 'Network error', type: 'error' });
+      onToast({ message: 'Network error', type: 'error' });
     } finally { setSaving(false); }
   };
 
@@ -1583,9 +1583,9 @@ function ActivityTab({ onToast }: { onToast: (t: ToastState) => void }) {
       a.download = res.headers.get('content-disposition')?.split('filename="')[1]?.replace('"', '') ?? 'nexusai-data.json';
       a.click();
       URL.revokeObjectURL(url);
-      onToast({ msg: 'Data exported successfully', type: 'success' });
+      onToast({ message: 'Data exported successfully', type: 'success' });
     } catch {
-      onToast({ msg: 'Export failed — check if MongoDB is configured', type: 'error' });
+      onToast({ message: 'Export failed — check if MongoDB is configured', type: 'error' });
     } finally { setExporting(false); }
   };
 

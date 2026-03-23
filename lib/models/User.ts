@@ -55,8 +55,8 @@ const UserSchema = new Schema<IUser>(
     },
     provider: {
       type:    String,
-      enum:    ['google', 'email', 'mixed'],
-      default: 'email',
+      // enum:    ['google', 'email', 'mixed'],
+      // default: 'email',
     },
     role: {
       type:    String,

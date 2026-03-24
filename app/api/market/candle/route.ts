@@ -117,7 +117,7 @@ export async function GET(req: NextRequest) {
   const fromParam  = searchParams.get('from');
   const toParam    = searchParams.get('to');
 
-  const sym = FINNHUB_SYMBOLS[id];
+  const sym = FINNHUB_SYMBOLS[id as keyof typeof FINNHUB_SYMBOLS];
   if (!sym) {
     return NextResponse.json({ error: `Unknown asset id: ${id}` }, { status: 400 });
   }

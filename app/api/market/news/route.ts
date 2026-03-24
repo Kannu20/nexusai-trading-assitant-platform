@@ -22,7 +22,7 @@ export async function GET(req: NextRequest) {
   const id    = searchParams.get('id') ?? '';
   const limit = parseInt(searchParams.get('limit') ?? '10');
 
-  const sym = FINNHUB_SYMBOLS[id];
+  const sym = FINNHUB_SYMBOLS[id as keyof typeof FINNHUB_SYMBOLS];
   if (!sym) {
     return NextResponse.json({ error: `Unknown asset id: ${id}` }, { status: 400 });
   }

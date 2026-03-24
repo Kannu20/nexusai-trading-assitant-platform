@@ -200,7 +200,7 @@ export async function batchQuotes(assetIds: string[]): Promise<Record<string, Fi
   const results: Record<string, FinnhubQuote> = {};
   await Promise.allSettled(
     assetIds.map(async (id) => {
-      const sym = FINNHUB_SYMBOLS[id];
+      const sym = FINNHUB_SYMBOLS[id as keyof typeof FINNHUB_SYMBOLS];
       if (!sym) return;
       const q = await getQuote(sym.quote);
       if (q) results[id] = q;

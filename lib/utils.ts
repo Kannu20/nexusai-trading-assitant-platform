@@ -20,8 +20,16 @@ export function formatCurrency(value: number, decimals = 2): string {
 }
 
 /** Format a percentage with sign */
-export function formatPercent(value: number, decimals = 2): string {
-  const sign = value >= 0 ? '+' : '';
+// export function formatPercent(value: number, decimals = 2): string {
+//   const sign = value >= 0 ? '+' : '';
+//   return `${sign}${value.toFixed(decimals)}%`;
+// }
+export function formatPercent(value: number | null | undefined, decimals = 2) {
+  if (value === null || value === undefined || isNaN(value)) {
+    return "--"; // safe fallback
+  }
+
+  const sign = value >= 0 ? "+" : "";
   return `${sign}${value.toFixed(decimals)}%`;
 }
 

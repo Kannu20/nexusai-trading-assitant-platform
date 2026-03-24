@@ -22,14 +22,14 @@ function url(path: string, params: Record<string, string | number> = {}) {
 // ── Types ────────────────────────────────────────────────────────
 
 export interface FinnhubQuote {
-  c:  number;   // current price
-  d:  number;   // change
+  c: number;   // current price
+  d: number;   // change
   dp: number;   // change percent
-  h:  number;   // 24h high
-  l:  number;   // 24h low
-  o:  number;   // open
+  h: number;   // 24h high
+  l: number;   // 24h low
+  o: number;   // open
   pc: number;   // previous close
-  t:  number;   // timestamp
+  t: number;   // timestamp
 }
 
 export interface FinnhubCandle {
@@ -46,39 +46,50 @@ export interface FinnhubNewsItem {
   category: string;
   datetime: number;
   headline: string;
-  id:       number;
-  image:    string;
-  related:  string;
-  source:   string;
-  summary:  string;
-  url:      string;
+  id: number;
+  image: string;
+  related: string;
+  source: string;
+  summary: string;
+  url: string;
 }
 
 export interface FinnhubProfile {
-  country:        string;
-  currency:       string;
-  exchange:       string;
-  name:           string;
-  ticker:         string;
-  ipo:            string;
-  marketCap:      number;
+  country: string;
+  currency: string;
+  exchange: string;
+  name: string;
+  ticker: string;
+  ipo: string;
+  marketCap: number;
   shareOutstanding: number;
-  logo:           string;
-  weburl:         string;
+  logo: string;
+  weburl: string;
   finnhubIndustry: string;
 }
 
 // ── Finnhub symbol map ────────────────────────────────────────────
 // Maps our internal asset IDs to Finnhub symbols
-export const FINNHUB_SYMBOLS: Record<string, { quote: string; candle: string; type: 'stock' | 'forex'; newsSymbol?: string }> = {
-  gold:      { quote: 'OANDA:XAU_USD', candle: 'OANDA:XAU_USD', type: 'forex',  newsSymbol: 'gold' },
-  silver:    { quote: 'OANDA:XAG_USD', candle: 'OANDA:XAG_USD', type: 'forex',  newsSymbol: 'silver' },
-  'crude-oil':{ quote: 'OANDA:BCO_USD',candle: 'OANDA:BCO_USD', type: 'forex',  newsSymbol: 'crude oil' },
-  copper:    { quote: 'OANDA:XCU_USD', candle: 'OANDA:XCU_USD', type: 'forex',  newsSymbol: 'copper' },
-  aapl:      { quote: 'AAPL',          candle: 'AAPL',           type: 'stock',  newsSymbol: 'AAPL' },
-  msft:      { quote: 'MSFT',          candle: 'MSFT',           type: 'stock',  newsSymbol: 'MSFT' },
-  nvda:      { quote: 'NVDA',          candle: 'NVDA',           type: 'stock',  newsSymbol: 'NVDA' },
-  tsla:      { quote: 'TSLA',          candle: 'TSLA',           type: 'stock',  newsSymbol: 'TSLA' },
+// export const FINNHUB_SYMBOLS: Record<string, { quote: string; candle: string; type: 'stock' | 'forex'; newsSymbol?: string }> = {
+//   gold:      { quote: 'GC=F', candle: 'GC=F', type: 'stock',  newsSymbol: 'gold' },
+//   silver:    { quote: 'SI=F', candle: 'SI=F', type: 'stock',  newsSymbol: 'silver' },
+//  'crude-oil':{ quote: 'CL=F',candle: 'CL=F', type: 'stock',  newsSymbol: 'crude oil' },
+//   copper: { quote: 'HG=F', candle: 'HG=F', type: 'stock' },
+//   aapl:      { quote: 'AAPL',candle: 'AAPL',type: 'stock',  newsSymbol: 'AAPL' },
+//   msft:      { quote: 'MSFT',          candle: 'MSFT',           type: 'stock',  newsSymbol: 'MSFT' },
+//   nvda:      { quote: 'NVDA',          candle: 'NVDA',           type: 'stock',  newsSymbol: 'NVDA' },
+//   tsla:      { quote: 'TSLA',          candle: 'TSLA',           type: 'stock',  newsSymbol: 'TSLA' },
+// };
+export const FINNHUB_SYMBOLS = {
+  gold: { quote: 'OANDA:XAU_USD', candle: 'OANDA:XAU_USD', type: 'forex' },
+  silver: { quote: 'OANDA:XAG_USD', candle: 'OANDA:XAG_USD', type: 'forex' },
+  'crude-oil': { quote: 'OANDA:BCO_USD', candle: 'OANDA:BCO_USD', type: 'forex' },
+  copper: { quote: 'OANDA:XCU_USD', candle: 'OANDA:XCU_USD', type: 'forex' },
+
+  aapl: { quote: 'AAPL', candle: 'AAPL', type: 'stock' },
+  msft: { quote: 'MSFT', candle: 'MSFT', type: 'stock' },
+  nvda: { quote: 'NVDA', candle: 'NVDA', type: 'stock' },
+  tsla: { quote: 'TSLA', candle: 'TSLA', type: 'stock' },
 };
 
 // ── API functions ────────────────────────────────────────────────
@@ -92,9 +103,11 @@ export async function getQuote(symbol: string): Promise<FinnhubQuote | null> {
     const res = await fetch(url('/quote', { symbol }), { next: { revalidate: 30 } });
     if (!res.ok) return null;
     const data = await res.json();
-    if (!data.c || data.c === 0) return null;
+    // if (!data.c || data.c === 0) return null;
+    if (!data || data.c === undefined) return null;
     return data as FinnhubQuote;
-  } catch {
+  } catch (err) {
+    console.error("Finnhub Error:", err);
     return null;
   }
 }
@@ -106,12 +119,13 @@ export async function getQuote(symbol: string): Promise<FinnhubQuote | null> {
  */
 export async function getCandles(
   symbol: string,
-  resolution: string = 'D',
+  resolution: string = '5',
   from: number,
   to: number
 ): Promise<FinnhubCandle | null> {
   try {
     const endpoint = symbol.startsWith('OANDA:') ? '/forex/candle' : '/stock/candle';
+    
     const res = await fetch(url(endpoint, { symbol, resolution, from, to }), {
       next: { revalidate: 300 }
     });
@@ -119,7 +133,8 @@ export async function getCandles(
     const data = await res.json();
     if (data.s !== 'ok') return null;
     return data as FinnhubCandle;
-  } catch {
+  } catch (err) {
+    console.error("Finnhub Error:", err);
     return null;
   }
 }
@@ -171,7 +186,8 @@ export async function getProfile(symbol: string): Promise<FinnhubProfile | null>
     });
     if (!res.ok) return null;
     return await res.json();
-  } catch {
+  } catch (err) {
+    console.error("Finnhub Error:", err);
     return null;
   }
 }
@@ -245,7 +261,7 @@ export function calcIndicators(candles: FinnhubCandle) {
     rsi14,
     bbUpper,
     bbLower,
-    currentRsi:   rsi14[n - 1],
+    currentRsi: rsi14[n - 1],
     currentSma20: sma20[n - 1],
     currentSma50: sma(50)[n - 1],
   };

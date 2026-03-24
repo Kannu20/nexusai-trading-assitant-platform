@@ -136,7 +136,7 @@ export default function AssetPage({ params }: { params: { id: string } }) {
       const res  = await fetch(`/api/market/candle?id=${id}&resolution=${resolution.value}&from=${from}&to=${to}`);
       const data = await res.json();
       if (data.bars) {
-        const merged = data.bars.map((b: Bar, i: number) => ({
+        const merged = data.bars.map((b: any, i: number) => ({
           ...b,
           ...(data.indicators[i] ?? {}),
         }));

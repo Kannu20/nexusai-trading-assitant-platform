@@ -316,7 +316,7 @@ function ProfileDropdown({ onClose }: { onClose: () => void }) {
       <div className="py-1.5">
         {[
           { icon: UserIcon, label: 'My Profile',     href: '/account' },
-          { icon: Settings, label: 'Settings',        href: '#' },
+          { icon: Settings, label: 'Settings',        href: '/settings' },
         ].map(({ icon: Icon, label, href }) => (
           <Link
             key={label}

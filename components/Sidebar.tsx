@@ -181,7 +181,7 @@ export default function Sidebar({ open, collapsed, onCollapse, onClose }: Sideba
             <div className="flex gap-1 px-1">
               <button className="flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-lg text-white/30 hover:text-white/70 hover:bg-white/5 transition-all text-xs">
                 <Settings className="w-3.5 h-3.5" />
-                <span>Settings</span>
+                <span><a href="/settings">Settings</a></span>
               </button>
               <button
                 onClick={logout}
